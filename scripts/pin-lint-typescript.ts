@@ -6,8 +6,10 @@
  * `typescript6` npm alias devDependency) via node_modules symlinks; `tsc`
  * and tsdown keep resolving the root TypeScript 7.
  *
- * Runs from the root `postinstall` hook. Remove this script together with
- * the `typescript6` devDependency once upstream supports TS7.
+ * Runs from the root `prepare` hook: on `bun install` or `npm install` in
+ * this repo, and before packing, but never when the package is installed as
+ * a dependency, so consumers need neither Bun nor this file. Remove it
+ * together with the `typescript6` devDependency once upstream supports TS7.
  */
 import { existsSync, mkdirSync, readdirSync, rmSync, symlinkSync } from "node:fs";
 import { dirname, join } from "node:path";
